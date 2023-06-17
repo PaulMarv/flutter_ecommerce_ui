@@ -1,6 +1,8 @@
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cloth_store_app/app_styles.dart';
 import 'package:flutter_cloth_store_app/size_config.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 
 void main() {
@@ -17,12 +19,56 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: HomeScreen(),
+        body: const HomeScreen(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          height: 64,
+          child: CustomNavigationBar(
+            isFloating: true,
+            borderRadius: const Radius.circular(40),
+            selectedColor: Kwhite,
+            unSelectedColor: KGrey,
+            backgroundColor: KBrown,
+            strokeColor: Colors.transparent,
+            scaleFactor: 0.1,
+            iconSize: 40,
+            items: [
+              CustomNavigationBarItem(
+                icon: _currentIndex == 0
+                    ? SvgPicture.asset("assets/home_icon_selected.svg")
+                    : SvgPicture.asset("assets/home_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 1
+                    ? SvgPicture.asset("assets/cart_icon_selected.svg")
+                    : SvgPicture.asset("assets/cart_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 2
+                    ? SvgPicture.asset("assets/favorite_icon_selected.svg")
+                    : SvgPicture.asset("assets/favorite_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 3
+                    ? SvgPicture.asset("assets/account_icon_selected.svg")
+                    : SvgPicture.asset("assets/account_icon_unselected.svg"),
+              ),
+            ],
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
@@ -48,13 +94,14 @@ class _HomeScreenState extends State<HomeScreen> {
   int current = 0;
 
   List<String> images = [
-    'image-01',
-    'images-02',
-    'image-03',
-    'image-04',
-    'images-04',
-    'image-05'
+    'image-01.png',
+    'image-02.png',
+    'image-03.png',
+    'image-04.png',
+    'image-04.png',
+    'image-05.jpg'
   ];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -200,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: current == index ? Kwhite : KDarkBrown,
                             fontSize: SizeConfig.blockSizeHorizontal! * 3,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -208,7 +255,103 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          const SizedBox(height: 32,),
+          const SizedBox(
+            height: 32,
+          ),
+          MasonryGridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 23,
+            itemCount: images.length,
+            padding: const EdgeInsets.symmetric(
+              horizontal: KPaddingHorizontal,
+            ),
+            itemBuilder: (context, index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(KBorderRadius),
+                          child: Image.asset(
+                            'assets/images/${images[index]}',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 12,
+                        top: 12,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: SvgPicture.asset(
+                              'assets/favorite_cloth_icon_unselected.svg'),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    'Modern light clothes',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: KEncodeSansSemiBold.copyWith(
+                      color: KDarkBrown,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 3.5,
+                    ),
+                  ),
+                  Text(
+                    'Dress Modern',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: KEncodeSansRegular.copyWith(
+                      color: KGrey,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 2.5,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '\$212.99',
+                        style: KEncodeSansSemiBold.copyWith(
+                          color: KDarkBrown,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 3.5,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: KYellow,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '5.0',
+                            style: KEncodeSansRegular.copyWith(
+                              color: KDarkBrown,
+                              fontSize: SizeConfig.blockSizeHorizontal! * 3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
+          ),
         ],
       ),
     );
