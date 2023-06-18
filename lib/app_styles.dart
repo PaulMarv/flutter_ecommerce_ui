@@ -8,6 +8,8 @@ const Color KGrey = Color(0xffa4aaad);
 const Color KDarkGrey = Color(0xff878787);
 const Color KLightGrey = Color(0xffededed);
 
+const Color KBorderColor = Color(0xffEAEAEA);
+
 const Color Kwhite = Color(0xffffffff);
 
 const Color KBlack = Color(0xff111111);
