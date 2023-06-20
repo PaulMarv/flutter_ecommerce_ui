@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cloth_store_app/app_styles.dart';
 import 'package:flutter_cloth_store_app/counter.dart';
 import 'package:flutter_cloth_store_app/size_config.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -16,16 +17,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   void _incrementCounter() {
     setState(() {
-      
+      _counter.increment();
     });
   }
 
   void _decrementCounter() {
     setState(() {
-      
+      _counter.decrement();
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +103,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 height: 24,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     child: Text('Modern light clothes',
@@ -114,9 +116,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         )),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: _decrementCounter,
                         child: Container(
                           height: 40,
                           width: 40,
@@ -133,8 +136,81 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             color: KGrey,
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        width: SizeConfig.blockSizeHorizontal! * 3,
+                      ),
+                      Text(
+                        _counter.value.toString(),
+                        style: KEncodeSansBold.copyWith(
+                          fontSize: SizeConfig.blockSizeHorizontal! * 5,
+                          color: KDarkBrown
+                        ),
+                      ),
+                      SizedBox(
+                        width: SizeConfig.blockSizeHorizontal! * 3,
+                      ),
+                       GestureDetector(
+                        onTap: _incrementCounter,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: KBorderColor,
+                              width: 1,
+                            ),
+                            shape: BoxShape.circle,
+                            color: Kwhite,
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: KGrey,
+                          ),
+                        ),
                       )
                     ],
+                  )
+                ],
+              ),
+              const SizedBox(height: 8,),
+              Row(
+                children: [
+                  RatingBar.builder(
+                    itemSize: 18,
+                    initialRating: 3.5,
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    itemCount: 5,
+                    itemPadding: const EdgeInsets.all(2),
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: KYellow
+                    ),
+                    onRatingUpdate: (rating){
+                      debugPrint(rating.toString());
+                    },
+                    unratedColor: KLightGrey,
+                  ),
+                  SizedBox(width: 8,),
+                  RichText(
+
+                    text: TextSpan(
+                      text: '5.0 ',
+                      style: KEncodeSansRegular.copyWith(
+                        color: KDarkGrey,
+                        fontSize: SizeConfig.blockSizeHorizontal! * 3.5
+                      ),
+                      children: <TextSpan> [
+                        TextSpan(
+                          text: '(7.932 reviews)',
+                          style: KEncodeSansRegular.copyWith(
+                            color:KBlue,
+                            fontSize: SizeConfig.blockSizeHorizontal! * 3.5
+                          ) ,
+                        ),
+                      ]
+                    )
                   )
                 ],
               )

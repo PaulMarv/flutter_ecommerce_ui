@@ -16,6 +16,8 @@ const Color KBlack = Color(0xff111111);
 
 const Color KYellow = Color(0xffffd33c);
 
+const Color KBlue = Color(0xff347EFB);
+
 const double KBorderRadius = 12.0;
 
 const double KPaddingHorizontal = 24.0;
