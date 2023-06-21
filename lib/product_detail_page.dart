@@ -4,6 +4,7 @@ import 'package:flutter_cloth_store_app/counter.dart';
 import 'package:flutter_cloth_store_app/size_config.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:readmore/readmore.dart';
 
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key});
@@ -143,14 +144,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       Text(
                         _counter.value.toString(),
                         style: KEncodeSansBold.copyWith(
-                          fontSize: SizeConfig.blockSizeHorizontal! * 5,
-                          color: KDarkBrown
-                        ),
+                            fontSize: SizeConfig.blockSizeHorizontal! * 5,
+                            color: KDarkBrown),
                       ),
                       SizedBox(
                         width: SizeConfig.blockSizeHorizontal! * 3,
                       ),
-                       GestureDetector(
+                      GestureDetector(
                         onTap: _incrementCounter,
                         child: Container(
                           height: 40,
@@ -173,7 +173,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   )
                 ],
               ),
-              const SizedBox(height: 8,),
+              const SizedBox(
+                height: 8,
+              ),
               Row(
                 children: [
                   RatingBar.builder(
@@ -183,34 +185,216 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     direction: Axis.horizontal,
                     itemCount: 5,
                     itemPadding: const EdgeInsets.all(2),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: KYellow
-                    ),
-                    onRatingUpdate: (rating){
+                    itemBuilder: (context, _) =>
+                        const Icon(Icons.star, color: KYellow),
+                    onRatingUpdate: (rating) {
                       debugPrint(rating.toString());
                     },
                     unratedColor: KLightGrey,
                   ),
-                  SizedBox(width: 8,),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   RichText(
-
                     text: TextSpan(
                       text: '5.0 ',
                       style: KEncodeSansRegular.copyWith(
-                        color: KDarkGrey,
-                        fontSize: SizeConfig.blockSizeHorizontal! * 3.5
-                      ),
-                      children: <TextSpan> [
+                          color: KDarkGrey,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 3.5),
+                      children: <TextSpan>[
                         TextSpan(
                           text: '(7.932 reviews)',
                           style: KEncodeSansRegular.copyWith(
-                            color:KBlue,
-                            fontSize: SizeConfig.blockSizeHorizontal! * 3.5
-                          ) ,
+                              color: KBlue,
+                              fontSize: SizeConfig.blockSizeHorizontal! * 3.5),
                         ),
-                      ]
-                    )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              ReadMoreText(
+                'Quarterly sales are at an all-time low please use "solutionise" instead of solution ideas! :) tbrand terrorists prepare yourself to swim with the sharks, or where do we stand on the latest client ask, nor (let\'s not try to) boil the ocean (here/there/everywhere) products need full resourcing and support from a cross-functional team in order to be built, maintained, and evolved ',
+                trimLines: 2,
+                trimMode: TrimMode.Line,
+                delimiter: ' ',
+                trimCollapsedText: 'Show More. . .',
+                trimExpandedText: 'Show Less',
+                style: KEncodeSansRegular.copyWith(
+                  fontSize: SizeConfig.blockSizeHorizontal! * 3.5,
+                  color: KDarkGrey,
+                ),
+                moreStyle: KEncodeSansBold.copyWith(
+                    fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                    color: KDarkBrown),
+                lessStyle: KEncodeSansBold.copyWith(
+                    fontSize: SizeConfig.blockSizeHorizontal! * 4,
+                    color: KDarkBrown),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Divider(
+                height: 1,
+                color: KLightGrey,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Choose Size',
+                        style: KEncodeSansBold.copyWith(
+                          color: KDarkBrown,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 3.5,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: Kwhite),
+                            child: Center(
+                              child: Text(
+                                'S',
+                                style: KEncodeSansRegular.copyWith(
+                                  color: KDarkBrown,
+                                  fontSize:
+                                      SizeConfig.blockSizeHorizontal! * 2.7,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 1,
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: Kwhite),
+                            child: Center(
+                              child: Text(
+                                'M',
+                                style: KEncodeSansRegular.copyWith(
+                                  color: KDarkBrown,
+                                  fontSize:
+                                      SizeConfig.blockSizeHorizontal! * 2.7,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 1,
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: KDarkBrown),
+                            child: Center(
+                              child: Text(
+                                'L',
+                                style: KEncodeSansBold.copyWith(
+                                  color: Kwhite,
+                                  fontSize:
+                                      SizeConfig.blockSizeHorizontal! * 2.7,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 1,
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: Kwhite),
+                            child: Center(
+                              child: Text(
+                                'XL',
+                                style: KEncodeSansRegular.copyWith(
+                                  color: KDarkBrown,
+                                  fontSize:
+                                      SizeConfig.blockSizeHorizontal! * 2.7,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Color',
+                        style: KEncodeSansBold.copyWith(
+                          color: KDarkBrown,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 3.5,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: KLightGrey),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 1,
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: KDarkBrown),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal! * 1,
+                          ),
+                          Container(
+                            height: SizeConfig.blockSizeHorizontal! * 4.5,
+                            width: SizeConfig.blockSizeHorizontal! * 4.5,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KLightGrey, width: 1),
+                                shape: BoxShape.circle,
+                                color: KBrown),
+                          )
+                        ],
+                      )
+                    ],
                   )
                 ],
               )
