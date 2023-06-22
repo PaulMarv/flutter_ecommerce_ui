@@ -25,53 +25,53 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: Scaffold(
-      //   body: const HomeScreen(),
-      //   floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      //   floatingActionButton: Container(
-      //     padding: const EdgeInsets.symmetric(horizontal: 8),
-      //     height: 64,
-      //     child: CustomNavigationBar(
-      //       isFloating: true,
-      //       borderRadius: const Radius.circular(40),
-      //       selectedColor: Kwhite,
-      //       unSelectedColor: KGrey,
-      //       backgroundColor: KBrown,
-      //       strokeColor: Colors.transparent,
-      //       scaleFactor: 0.1,
-      //       iconSize: 40,
-      //       items: [
-      //         CustomNavigationBarItem(
-      //           icon: _currentIndex == 0
-      //               ? SvgPicture.asset("assets/home_icon_selected.svg")
-      //               : SvgPicture.asset("assets/home_icon_unselected.svg"),
-      //         ),
-      //         CustomNavigationBarItem(
-      //           icon: _currentIndex == 1
-      //               ? SvgPicture.asset("assets/cart_icon_selected.svg")
-      //               : SvgPicture.asset("assets/cart_icon_unselected.svg"),
-      //         ),
-      //         CustomNavigationBarItem(
-      //           icon: _currentIndex == 2
-      //               ? SvgPicture.asset("assets/favorite_icon_selected.svg")
-      //               : SvgPicture.asset("assets/favorite_icon_unselected.svg"),
-      //         ),
-      //         CustomNavigationBarItem(
-      //           icon: _currentIndex == 3
-      //               ? SvgPicture.asset("assets/account_icon_selected.svg")
-      //               : SvgPicture.asset("assets/account_icon_unselected.svg"),
-      //         ),
-      //       ],
-      //       currentIndex: _currentIndex,
-      //       onTap: (index) {
-      //         setState(() {
-      //           _currentIndex = index;
-      //         });
-      //       },
-      //     ),
-      //   ),
-      // ),
-      home: ProductDetailPage(),
+      home: Scaffold(
+        body: const HomeScreen(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          height: 64,
+          child: CustomNavigationBar(
+            isFloating: true,
+            borderRadius: const Radius.circular(40),
+            selectedColor: Kwhite,
+            unSelectedColor: KGrey,
+            backgroundColor: KBrown,
+            strokeColor: Colors.transparent,
+            scaleFactor: 0.1,
+            iconSize: 40,
+            items: [
+              CustomNavigationBarItem(
+                icon: _currentIndex == 0
+                    ? SvgPicture.asset("assets/home_icon_selected.svg")
+                    : SvgPicture.asset("assets/home_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 1
+                    ? SvgPicture.asset("assets/cart_icon_selected.svg")
+                    : SvgPicture.asset("assets/cart_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 2
+                    ? SvgPicture.asset("assets/favorite_icon_selected.svg")
+                    : SvgPicture.asset("assets/favorite_icon_unselected.svg"),
+              ),
+              CustomNavigationBarItem(
+                icon: _currentIndex == 3
+                    ? SvgPicture.asset("assets/account_icon_selected.svg")
+                    : SvgPicture.asset("assets/account_icon_unselected.svg"),
+              ),
+            ],
+            currentIndex: _currentIndex,
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+        ),
+      ),
+      // home: ProductDetailPage(),
     );
   }
 }
@@ -274,27 +274,37 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(
-                    children: [
-                      Positioned(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(KBorderRadius),
-                          child: Image.asset(
-                            'assets/images/${images[index]}',
-                            fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const ProductDetailPage(),
+                        ),
+                      );
+                    },
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(KBorderRadius),
+                            child: Image.asset(
+                              'assets/images/${images[index]}',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        right: 12,
-                        top: 12,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: SvgPicture.asset(
-                              'assets/favorite_cloth_icon_unselected.svg'),
+                        Positioned(
+                          right: 12,
+                          top: 12,
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: SvgPicture.asset(
+                                'assets/favorite_cloth_icon_unselected.svg'),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 8,

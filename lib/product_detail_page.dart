@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cloth_store_app/app_styles.dart';
+import 'package:flutter_cloth_store_app/checkout_page.dart';
 import 'package:flutter_cloth_store_app/counter.dart';
 import 'package:flutter_cloth_store_app/size_config.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -36,7 +37,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: GestureDetector(
         onTap: () {
-          debugPrint('add to cart button pressed');
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => const CheckoutPage(),
+            ),
+          );
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -441,9 +446,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   )
                 ],
               ),
-            const SizedBox(
-              height: 60,
-            )
+              const SizedBox(
+                height: 60,
+              )
             ],
           ),
         ),
