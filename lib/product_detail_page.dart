@@ -33,6 +33,49 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     SizeConfig().init(context);
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          debugPrint('add to cart button pressed');
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          height: 60,
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: KPaddingHorizontal),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(40), color: KDarkBrown),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset('assets/shopping_cart_icon.svg'),
+              SizedBox(
+                width: SizeConfig.blockSizeHorizontal! * 2,
+              ),
+              RichText(
+                text: TextSpan(
+                  text: 'Add to Cart | \$100.99',
+                  style: KEncodeSansRegular.copyWith(
+                      color: Kwhite,
+                      fontSize: SizeConfig.blockSizeHorizontal! * 4),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '\$190.99',
+                      style: KEncodeSansBold.copyWith(
+                          color: Kwhite,
+                          fontSize: SizeConfig.blockSizeHorizontal! * 3,
+                          decoration: TextDecoration.lineThrough,
+                          decorationThickness:
+                              SizeConfig.blockSizeHorizontal! * 1,
+                          decorationColor: Kwhite),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: KPaddingHorizontal),
@@ -397,7 +440,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ],
                   )
                 ],
-              )
+              ),
+            const SizedBox(
+              height: 60,
+            )
             ],
           ),
         ),
