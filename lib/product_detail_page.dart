@@ -49,7 +49,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: KPaddingHorizontal),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40), color: KDarkBrown),
+              borderRadius: BorderRadius.circular(40), 
+              color: KDarkBrown
+              ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
