@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cloth_store_app/app_styles.dart';
 import 'package:flutter_cloth_store_app/checkout_page.dart';
 import 'package:flutter_cloth_store_app/counter.dart';
+import 'package:flutter_cloth_store_app/main.dart';
 import 'package:flutter_cloth_store_app/size_config.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
@@ -49,9 +50,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           width: double.infinity,
           margin: const EdgeInsets.symmetric(horizontal: KPaddingHorizontal),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40), 
-              color: KDarkBrown
-              ),
+              borderRadius: BorderRadius.circular(40), color: KBrown),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -109,22 +108,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              height: SizeConfig.blocksizeVertical! * 4,
-                              width: SizeConfig.blocksizeVertical! * 4,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Kwhite,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: KBrown.withOpacity(0.11),
-                                        spreadRadius: 0.0,
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 5))
-                                  ]),
-                              padding: const EdgeInsets.all(8),
-                              child: SvgPicture.asset(
-                                  'assets/arrow_back_icon.svg'),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const MyApp(),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                height: SizeConfig.blocksizeVertical! * 4,
+                                width: SizeConfig.blocksizeVertical! * 4,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Kwhite,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: KBrown.withOpacity(0.11),
+                                          spreadRadius: 0.0,
+                                          blurRadius: 12,
+                                          offset: const Offset(0, 5))
+                                    ]),
+                                padding: const EdgeInsets.all(8),
+                                child: SvgPicture.asset(
+                                    'assets/arrow_back_icon.svg'),
+                              ),
                             ),
                             Container(
                               height: SizeConfig.blocksizeVertical! * 4,
