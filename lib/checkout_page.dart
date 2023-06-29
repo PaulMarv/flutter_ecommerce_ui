@@ -69,15 +69,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       height: SizeConfig.blocksizeVertical! * 4,
                       width: SizeConfig.blocksizeVertical! * 4,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Kwhite,
-                          boxShadow: [
-                            BoxShadow(
-                                color: KBrown.withOpacity(0.11),
-                                spreadRadius: 0.0,
-                                blurRadius: 12,
-                                offset: const Offset(0, 5))
-                          ]),
+                        shape: BoxShape.circle,
+                        color: Kwhite,
+                        border: Border.all(
+                          color: KBorderColor,
+                          width: 1,
+                        ),
+                      ),
                       padding: const EdgeInsets.all(8),
                       child: SvgPicture.asset('assets/arrow_back_icon.svg'),
                     ),
@@ -93,15 +91,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     height: SizeConfig.blocksizeVertical! * 4,
                     width: SizeConfig.blocksizeVertical! * 4,
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Kwhite,
-                        boxShadow: [
-                          BoxShadow(
-                              color: KBrown.withOpacity(0.11),
-                              spreadRadius: 0.0,
-                              blurRadius: 12,
-                              offset: const Offset(0, 5))
-                        ]),
+                      shape: BoxShape.circle,
+                      color: Kwhite,
+                      border: Border.all(
+                        color: KBorderColor,
+                        width: 1,
+                      ),
+                    ),
                     padding: const EdgeInsets.all(8),
                     child: const Icon(
                       Icons.menu_rounded,
@@ -114,8 +110,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
             // SizedBox(
             //   height: SizeConfig.blocksizeVertical! * 3,
             // ),
-            Expanded(
+            SafeArea(
               child: ListView.builder(
+                shrinkWrap: true,
                 itemCount: images.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
@@ -124,6 +121,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         height: SizeConfig.blocksizeVertical! * 2,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             child: ClipRRect(
@@ -135,9 +133,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 10,
                           ),
                           SizedBox(
                             height: 70,
@@ -171,6 +166,55 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 )
                               ],
                             ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            height: 70,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const Icon(Icons.more_horiz_outlined,
+                                    size: 15, color: KDarkBrown),
+                                SizedBox(
+                                  width: 85,
+                                  height: 28,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: KDarkBrown,
+                                    ),
+                                    padding: const EdgeInsets.all(4),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Icon(
+                                          Icons.remove,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                          child: Text(
+                                            '2',
+                                            style: KEncodeSansRegular.copyWith(
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 20,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -186,6 +230,23 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ],
                   );
                 },
+              ),
+            ),
+            SizedBox(
+              height: SizeConfig.blocksizeVertical! * 2,
+            ),
+            SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Shopping Information',
+                    style: KEncodeSansSemiBold.copyWith(
+                      color: KDarkBrown,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             )
           ],
